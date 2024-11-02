@@ -330,8 +330,6 @@ nav {
   margin: 0 auto;
 }
 
-/* Remove this CSS block entirely */
-
 .phenomenon-card {
   margin: 2rem 0;
   background: rgba(11, 11, 15, 0.98);
@@ -491,6 +489,47 @@ nav {
   border-radius: 15px;
   overflow: hidden;
 }
+
+.space-terms {
+  margin: 2rem auto;
+  max-width: 1400px;
+  padding: 4rem 5%;
+  background: rgba(11, 11, 15, 0.8);
+  border-radius: 15px;
+}
+
+.space-terms h3 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--nebula-purple);
+  text-align: center;
+}
+
+.term-card {
+  background: rgba(138, 43, 226, 0.1);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  transition: transform 0.3s ease;
+}
+
+.term-card:hover {
+  transform: translateY(-5px);
+  background: rgba(138, 43, 226, 0.15);
+}
+
+.term-card h4 {
+  color: var(--nebula-purple);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.term-card p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: var(--star-white);
+}
 </style>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
@@ -521,6 +560,40 @@ nav {
     </div>
   </div>
 </section>
+
+<div class="space-terms">
+  <h3>Essential Space Concepts & Terminology</h3>
+  
+  <div class="term-card">
+    <h4>Light Year</h4>
+    <p>A light year is the distance light travels in one year, approximately 9.46 trillion kilometers (5.88 trillion miles). Light travels at 299,792 kilometers per second (186,282 miles per second). Scientists use light years to measure vast cosmic distances because regular units like kilometers would result in unwieldy numbers.</p>
+  </div>
+
+  <div class="term-card">
+    <h4>Orbital Velocity</h4>
+    <p>Orbital velocity is the speed at which an object must travel to maintain a stable orbit around another body. For example, the International Space Station orbits Earth at approximately 7.66 kilometers per second (17,100 mph) to maintain its path around our planet.</p>
+  </div>
+
+  <div class="term-card">
+    <h4>Galaxy</h4>
+    <p>A galaxy is a massive gravitationally bound system consisting of stars, stellar remnants, gas, dust, and dark matter. Our galaxy, the Milky Way, contains an estimated 100-400 billion stars and is approximately 100,000 light-years in diameter.</p>
+  </div>
+
+  <div class="term-card">
+    <h4>Universe</h4>
+    <p>The Universe encompasses all of space, time, matter, and energy. Current estimates suggest it's about 13.8 billion years old and contains at least 100 billion galaxies. The observable universe extends about 46.5 billion light-years in every direction from Earth.</p>
+  </div>
+
+  <div class="term-card">
+    <h4>Speed of Light</h4>
+    <p>The speed of light in a vacuum (c) is 299,792,458 meters per second. This is the universal speed limit - nothing can travel faster than light. This fundamental constant plays a crucial role in Einstein's theory of relativity and our understanding of spacetime.</p>
+  </div>
+
+  <div class="term-card">
+    <h4>Milky Way</h4>
+    <p>The Milky Way is our home galaxy - a barred spiral galaxy approximately 100,000 light-years in diameter. It contains 100-400 billion stars, numerous nebulae, and a supermassive black hole at its center named Sagittarius A*, which is about 4 million times the mass of our Sun.</p>
+  </div>
+</div>
 
 <section id="research" class="section">
   <h2>Current Research Initiatives</h2>
@@ -564,13 +637,27 @@ nav {
              alt="Supermassive black hole simulation showing accretion disk and event horizon"
              width="800" 
              height="500">
-
-        <div class="interactive-controls">
-          <button class="control-btn" data-action="rotate">Rotate View</button>
-          <button class="control-btn" data-action="zoom">Zoom Effect</button>
-          <button class="control-btn" data-action="details">Toggle Details</button>
+      </div>
+      
+      <div class="phenomenon-info">
+        <p>Black holes are among the most fascinating and mysterious objects in the universe. They are regions of space where gravity is so strong that nothing - not even light - can escape once it passes the event horizon. At the center of a black hole lies what scientists call a singularity - a point where matter is crushed to infinite density and spacetime curves infinitely.</p>
+        
+        <div class="key-characteristics">
+          <div class="characteristic">
+            <h4>Formation</h4>
+            <p>Created when massive stars collapse at the end of their lives, or through the merger of multiple stars or black holes</p>
+          </div>
+          <div class="characteristic">
+            <h4>Types</h4>
+            <p>Range from stellar-mass black holes to supermassive black holes that exist at the centers of galaxies</p>
+          </div>
+          <div class="characteristic">
+            <h4>Effects</h4>
+            <p>Distort spacetime, emit powerful radiation through their accretion disks, and can even affect the formation and evolution of entire galaxies</p>
+          </div>
         </div>
       </div>
+      
       <div class="data-grid">
         <div class="data-item">
           <div class="data-value">4M☉</div>
@@ -585,24 +672,7 @@ nav {
           <div class="data-label">Orbital Velocity</div>
         </div>
       </div>
-      <div class="phenomenon-info">
-        <p>A black hole is a region in space where gravity is so strong that nothing, not even light, can escape from it. These cosmic behemoths form when massive stars collapse at the end of their lives. At their center lies a singularity - a point of infinite density where the known laws of physics break down.</p>
-        
-        <div class="key-characteristics">
-          <div class="characteristic">
-            <h4>Event Horizon</h4>
-            <p>The boundary beyond which nothing can escape the black hole's gravitational pull</p>
-          </div>
-          <div class="characteristic">
-            <h4>Accretion Disk</h4>
-            <p>Swirling matter that orbits the black hole, heated to extreme temperatures</p>
-          </div>
-          <div class="characteristic">
-            <h4>Gravitational Effects</h4>
-            <p>Causes extreme time dilation and space distortion in its vicinity</p>
-          </div>
-        </div>
-      </div>
+    </div>
     <div class="phenomenon-card">
       <h3>Nebulae Formation & Structure</h3>
       <div class="visual-container">
@@ -772,7 +842,7 @@ function createStars() {
 // Add error handling for images
 document.querySelectorAll('.visual-container img').forEach(img => {
   img.onerror = function() {
-    this.src = 'https://www.jpl.nasa.gov/edu/images/news/bh_diagram.jpg'; // Fallback image
+    this.src = 'https://images.nasa.gov/images/blackhole_accretion_disk.jpg'; // Fallback image
     console.log('Image failed to load:', this.alt);
   };
 });
