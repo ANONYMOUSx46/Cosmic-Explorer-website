@@ -1,0 +1,896 @@
+<html><head><base href="/" lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Explorer - Advanced Space Research & Education</title>
+
+<style>
+:root {
+  --space-black: #0B0B0F;
+  --star-white: #FFFFFF;
+  --nebula-purple: #8A2BE2;
+  --galaxy-blue: #4B0082;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--space-black);
+  color: var(--star-white);
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+}
+
+.stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.nav-wrapper {
+  background: rgba(11, 11, 15, 0.9);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #8A2BE2, #4B0082);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--star-white);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--nebula-purple);
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 5%;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 700px;
+  animation: fadeInUp 1s ease-out 0.5s backwards;
+}
+
+.cta-buttons {
+  margin-top: 2rem;
+}
+
+.cta-buttons a {
+  padding: 1rem 2rem;
+  margin: 0 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.primary-btn {
+  background-color: var(--nebula-purple);
+  color: var(--star-white);
+}
+
+.section {
+  padding: 8rem 10%;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.section h2 {
+  font-size: 2.75rem;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--nebula-purple);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.fact-container {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  background: rgba(74, 0, 130, 0.2);
+  border-radius: 15px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fact-content {
+  animation: fadeIn 1s ease-in;
+  text-align: center;
+}
+
+.fact-content h4 {
+  color: var(--nebula-purple);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.fact-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.fact-content .source {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.interactive-model {
+  width: 100%;
+  height: 500px;
+  border: none;
+  border-radius: 15px;
+}
+
+.mission-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mission {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+.mission-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.status {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.status.active {
+  background-color: var(--nebula-purple);
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.resource-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+.key-facts {
+  list-style-type: none;
+  padding: 0;
+}
+
+.key-facts li {
+  margin: 0.5rem 0;
+}
+
+.space-object {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: var(--nebula-purple);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-event {
+  padding: 1rem;
+  position: relative;
+  width: 50%;
+  margin: 2rem 0;
+}
+
+.timeline-event:nth-child(odd) {
+  left: 0;
+  padding-right: 3rem;
+}
+
+.timeline-event:nth-child(even) {
+  left: 50%;
+  padding-left: 3rem;
+}
+
+.visual-container {
+  cursor: grab;
+  overflow: hidden;
+  position: relative;
+}
+
+.visual-container img {
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.visual-container:active {
+  cursor: grabbing;
+}
+
+.visual-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Remove this CSS block entirely */
+
+.phenomenon-card {
+  margin: 2rem 0;
+  background: rgba(11, 11, 15, 0.98);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(138, 43, 226, 0.4);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.visual-container img:hover {
+  transform: scale(1.02);
+}
+
+.phenomenon-info {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  margin-top: 1.5rem;
+}
+
+.phenomenon-info p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.key-characteristics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.characteristic {
+  background: rgba(138, 43, 226, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(138, 43, 226, 0.2);
+}
+
+.characteristic h4 {
+  color: var(--nebula-purple);
+  margin-bottom: 0.5rem;
+}
+
+.phenomenon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(138, 43, 226, 0.1);
+}
+
+.phenomenon-card h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--nebula-purple);
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 1.5rem 0;
+}
+
+.data-item {
+  background: rgba(255,255,255,0.07);
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.data-value {
+  font-size: 1.5rem;
+  color: var(--nebula-purple);
+  margin-bottom: 0.5rem;
+}
+
+.data-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.interactive-controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.control-btn {
+  background: rgba(138, 43, 226, 0.3);
+  border: 1px solid var(--nebula-purple);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+  background: rgba(138, 43, 226, 0.5);
+  transform: translateY(-2px);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+}
+
+.control-btn:hover {
+  background: rgba(138, 43, 226, 0.4);
+}
+
+.black-hole-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.1rem;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0,0,0,0.9);
+  pointer-events: all;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.label-title {
+  font-weight: bold;
+  color: var(--nebula-purple);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.label-description {
+  font-size: 0.9rem;
+  max-width: 250px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  background: rgba(0,0,0,0.95);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 0.8rem;
+  border: 1px solid var(--nebula-purple);
+  transform: translateY(-10px);
+}
+
+.black-hole-label:hover .label-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#black-hole-model {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: rgba(0,0,0,0.8);
+  border-radius: 15px;
+  overflow: hidden;
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+<div class="stars" id="stars"></div>
+
+<div class="nav-wrapper">
+  <nav>
+    <div class="logo">Cosmic Explorer Institute</div>
+    <div class="nav-links">
+      <a href="#research">Research</a>
+      <a href="#galaxies">Stellar Phenomena</a>
+      <a href="#exploration">Space Missions</a>
+      <a href="#education">Educational Resources</a>
+    </div>
+  </nav>
+</div>
+
+<section class="hero">
+  <div>
+    <h1>Advancing Human Understanding of the Cosmos</h1>
+    <p>Leading the frontier of space research, education, and exploration through cutting-edge technology and international collaboration.</p>
+    <div class="cta-buttons">
+      <a href="#research" class="primary-btn">View Research</a>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="section">
+  <h2>Current Research Initiatives</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Exoplanetary Systems</h3>
+      <p>Our team analyzes data from the James Webb Space Telescope to identify potentially habitable exoplanets. Recent findings suggest over 40 promising candidates within 100 light-years of Earth.</p>
+      <div class="stats">
+        <div class="stat">
+          <span class="number">40+</span>
+          <span class="label">Candidate Planets</span>
+        </div>
+        <div class="stat">
+          <span class="number">100</span>
+          <span class="label">Light Years Range</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Dark Matter Research</h3>
+      <p>Using advanced gravitational lensing techniques, we're mapping dark matter distribution across galaxy clusters, providing insights into the universe's fundamental structure.</p>
+      <div class="research-progress">
+        <div class="progress-bar" data-progress="75"></div>
+        <span>Project Progress: 75%</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Quantum Astronomy</h3>
+      <p>Pioneering the integration of quantum sensors for unprecedented precision in astronomical measurements, potentially revolutionizing our understanding of cosmic phenomena.</p>
+    </div>
+  </div>
+</section>
+
+<section id="galaxies" class="section">
+  <h2>Stellar Phenomena</h2>
+  <div class="interactive-gallery">
+    <div class="phenomenon-card">
+      <h3>Supermassive Black Holes</h3>
+      <div class="visual-container">
+        <img src="https://www.jpl.nasa.gov/edu/images/news/bh_diagram.jpg" 
+             alt="Supermassive black hole simulation showing accretion disk and event horizon"
+             width="800" 
+             height="500">
+
+        <div class="interactive-controls">
+          <button class="control-btn" data-action="rotate">Rotate View</button>
+          <button class="control-btn" data-action="zoom">Zoom Effect</button>
+          <button class="control-btn" data-action="details">Toggle Details</button>
+        </div>
+      </div>
+      <div class="data-grid">
+        <div class="data-item">
+          <div class="data-value">4M☉</div>
+          <div class="data-label">Sagittarius A* Mass</div>
+        </div>
+        <div class="data-item">
+          <div class="data-value">26,000</div>
+          <div class="data-label">Light Years from Earth</div>
+        </div>
+        <div class="data-item">
+          <div class="data-value">1,000km/s</div>
+          <div class="data-label">Orbital Velocity</div>
+        </div>
+      </div>
+      <div class="phenomenon-info">
+        <p>A black hole is a region in space where gravity is so strong that nothing, not even light, can escape from it. These cosmic behemoths form when massive stars collapse at the end of their lives. At their center lies a singularity - a point of infinite density where the known laws of physics break down.</p>
+        
+        <div class="key-characteristics">
+          <div class="characteristic">
+            <h4>Event Horizon</h4>
+            <p>The boundary beyond which nothing can escape the black hole's gravitational pull</p>
+          </div>
+          <div class="characteristic">
+            <h4>Accretion Disk</h4>
+            <p>Swirling matter that orbits the black hole, heated to extreme temperatures</p>
+          </div>
+          <div class="characteristic">
+            <h4>Gravitational Effects</h4>
+            <p>Causes extreme time dilation and space distortion in its vicinity</p>
+          </div>
+        </div>
+      </div>
+    <div class="phenomenon-card">
+      <h3>Nebulae Formation & Structure</h3>
+      <div class="visual-container">
+        <img src="https://images-assets.nasa.gov/image/PIA15985/PIA15985~orig.jpg"
+             alt="Helix Nebula captured by NASA's Hubble Space Telescope"
+             width="800"
+             height="500">
+      </div>
+      
+      <div class="phenomenon-info">
+        <p>Nebulae are vast clouds of gas and dust in space where new stars are born. These stellar nurseries are shaped by radiation, stellar winds, and gravitational forces, creating spectacular cosmic formations that can span hundreds of light-years.</p>
+        
+        <div class="key-characteristics">
+          <div class="characteristic">
+            <h4>Composition</h4>
+            <p>Primarily hydrogen (90%) and helium (10%), with traces of other elements</p>
+          </div>
+          <div class="characteristic">
+            <h4>Temperature Range</h4>
+            <p>-263°C to 12,000°C depending on the region</p>
+          </div>
+          <div class="characteristic">
+            <h4>Formation Process</h4>
+            <p>Created by stellar remnants or accumulation of interstellar medium</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phenomenon-card">
+      <h3>Neutron Stars: Nature's Cosmic Extremes</h3>
+      <div class="visual-container">
+        <img src="https://images-assets.nasa.gov/image/PIA21474/PIA21474~orig.jpg"
+             alt="Crab Nebula pulsar - a rapidly rotating neutron star"
+             width="800"
+             height="500">
+
+        <defs>
+          <radialGradient id="pulsar-beam">
+            <stop offset="0%" stop-color="white"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+        
+        <g class="magnetic-field" stroke="rgba(138, 43, 226, 0.3)" fill="none">
+          <path d="M350,250 C400,100 600,100 650,250" />
+          <path d="M350,250 C400,400 600,400 650,250" />
+        </g>
+        
+        <circle cx="400" cy="250" r="30" fill="white">
+          <animate attributeName="opacity" values="1;0.5;1" dur="0.5s" repeatCount="indefinite"/>
+        </circle>
+        
+        <path d="M400,250 L600,50" fill="url(#pulsar-beam)" opacity="0.6">
+          <animate attributeName="opacity" values="0.6;0.2;0.6" dur="0.5s" repeatCount="indefinite"/>
+        </path>
+        <path d="M400,250 L600,450" fill="url(#pulsar-beam)" opacity="0.6">
+          <animate attributeName="opacity" values="0.6;0.2;0.6" dur="0.5s" repeatCount="indefinite"/>
+        </path>
+      </div>
+      
+      <div class="phenomenon-info">
+        <p>Neutron stars are the ultra-dense remnants of massive stars that have exploded as supernovae. With masses greater than our Sun compressed into a sphere only about 20 kilometers in diameter, they represent some of the most extreme objects in the universe.</p>
+        
+        <div class="key-characteristics">
+          <div class="characteristic">
+            <h4>Density</h4>
+            <p>One teaspoon would weigh approximately 1 billion tons</p>
+          </div>
+          <div class="characteristic">
+            <h4>Rotation</h4>
+            <p>Can spin up to 716 times per second</p>
+          </div>
+          <div class="characteristic">
+            <h4>Magnetic Field</h4>
+            <p>Up to 1 trillion times stronger than Earth's</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="exploration" class="section">
+  <h2>Current Space Missions</h2>
+  <div class="mission-timeline">
+    <div class="mission">
+      <h3>Artemis Program</h3>
+      <p>NASA's ambitious project to return humans to the Moon by 2025, establishing sustainable lunar presence and testing technologies for future Mars missions.</p>
+      <div class="mission-details">
+        <span class="date">2021-2025</span>
+        <span class="status active">Active</span>
+      </div>
+    </div>
+    <!-- More missions... -->
+  </div>
+</section>
+
+<section id="education" class="section">
+  <h2>Educational Resources</h2>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <h3>Interactive Learning Programs</h3>
+      <ul>
+        <li>Virtual Observatory Access</li>
+        <li>Real-time Space Data Analysis</li>
+        <li>Professional Development Courses</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Space Exploration Timeline</h2>
+  <div class="timeline">
+    <div class="timeline-event">
+      <div class="date">1957</div>
+      <div class="content">
+        <h3>Sputnik 1 Launch</h3>
+        <p>First artificial satellite to orbit Earth, marking the beginning of the Space Age.</p>
+      </div>
+    </div>
+    <div class="timeline-event">
+      <div class="date">1969</div>
+      <div class="content">
+        <h3>Apollo 11 Moon Landing</h3>
+        <p>First humans walk on the Moon, with Neil Armstrong taking his historic first step.</p>
+      </div>
+    </div>
+    <div class="timeline-event">
+      <div class="date">2024</div>
+      <div class="content">
+        <h3>Artemis Program</h3>
+        <p>Planned return of humans to the Moon, establishing sustainable lunar presence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="facts" class="section">
+  <h2>Space Facts</h2>
+  <div class="fact-container" id="fact-slider">
+    <!-- Facts will be dynamically inserted here -->
+  </div>
+</section>
+
+<script>
+// Stars Background
+function createStars() {
+  const stars = document.getElementById('stars');
+  for (let i = 0; i < 200; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.cssText = `
+      position: absolute;
+      width: ${Math.random() * 3}px;
+      height: ${Math.random() * 3}px;
+      background: white;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      opacity: ${Math.random()};
+      animation: twinkle ${Math.random() * 5 + 3}s linear infinite;
+    `;
+    stars.appendChild(star);
+  }
+}
+
+// Add error handling for images
+document.querySelectorAll('.visual-container img').forEach(img => {
+  img.onerror = function() {
+    this.src = 'https://www.jpl.nasa.gov/edu/images/news/bh_diagram.jpg'; // Fallback image
+    console.log('Image failed to load:', this.alt);
+  };
+});
+
+// Enhanced Facts Database
+const spaceFacts = [
+  {
+    title: "Galactic Scale",
+    content: "The Milky Way contains an estimated 100-400 billion stars and spans approximately 100,000 light-years in diameter.",
+    source: "European Space Agency"
+  },
+  {
+    title: "Cosmic Expansion",
+    content: "The universe is expanding at an accelerating rate of approximately 72 kilometers per second per megaparsec.",
+    source: "Hubble Space Telescope Data"
+  },
+  {
+    title: "Solar System Formation",
+    content: "Our solar system formed approximately 4.6 billion years ago from a giant molecular cloud through gravitational collapse.",
+    source: "NASA Solar System Exploration"
+  }
+];
+
+// Enhanced fact display with sources and transitions
+function initFactSlider() {
+  const container = document.getElementById('fact-slider');
+  let currentFact = 0;
+
+  function updateFact() {
+    const fact = spaceFacts[currentFact];
+    container.innerHTML = `
+      <div class="fact-content">
+        <h4>${fact.title}</h4>
+        <p>${fact.content}</p>
+        <span class="source">Source: ${fact.source}</span>
+      </div>
+    `;
+    
+    // Trigger animation
+    const content = container.querySelector('.fact-content');
+    content.style.animation = 'none';
+    content.offsetHeight; // Trigger reflow
+    content.style.animation = 'fadeIn 1s ease-in';
+    
+    currentFact = (currentFact + 1) % spaceFacts.length;
+  }
+
+  // Initial update
+  updateFact();
+  
+  // Set interval for rotation
+  setInterval(updateFact, 8000);
+}
+
+// Ensure the initialization happens when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  initFactSlider();
+});
+
+function initStellarPhenomena() {
+  const cards = document.querySelectorAll('.phenomenon-card');
+  
+  cards.forEach(card => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    observer.observe(card);
+    
+    const controls = card.querySelector('.interactive-controls');
+    if (controls) {
+      controls.querySelectorAll('.control-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          const visual = card.querySelector('.visual-container');
+          
+          switch(action) {
+            case 'rotate':
+              visual.style.transform = `rotate(${Math.random() * 360}deg)`;
+              break;
+            case 'zoom':
+              visual.style.transform = 'scale(1.2)';
+              setTimeout(() => visual.style.transform = 'scale(1)', 2000);
+              break;
+            case 'details':
+              const details = card.querySelector('.phenomenon-details');
+              details.style.display = details.style.display === 'none' ? 'block' : 'none';
+              break;
+          }
+        });
+      });
+    }
+  });
+
+  enhanceVisualControls(); // Add this line
+}
+
+// Initialize everything when the page loads
+window.addEventListener('load', () => {
+  createStars();
+  initStellarPhenomena();
+});
+
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+
+</body>
+</html>
